@@ -1,0 +1,679 @@
+{
+	"info": {
+		"_postman_id": "52b89d24-dd98-4c2a-b397-6a539635fa7b",
+		"name": "Movies-Reviews Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Movie Requests",
+			"item": [
+				{
+					"name": "ADD movie WITH reviews and actors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    {\r\n        \"movieName\": \"Some movie with reviews\",\r\n        \"yearOfRelease\": 2022,\r\n        \"imgUrl\": \"some url\",\r\n        \"rentalCost\": 23423,\r\n        \"reviews\": [\r\n            {\r\n                \"reviewId\": null,\r\n                \"dateOfReview\": 2022,\r\n                \"reviewAuthor\": \"some review author\",\r\n                \"rating\": 2.5,\r\n                \"reviewContent\": \"some content\"\r\n            },\r\n            {\r\n                \"reviewId\": null,\r\n                \"dateOfReview\": 2022,\r\n                \"reviewAuthor\": \"some review author 2\",\r\n                \"rating\": 2.5,\r\n                \"reviewContent\": \"some content 2\"\r\n            }\r\n        ],\r\n        \"actors\": [\r\n            {\r\n                \"actorFirstName\": \"John\",\r\n                \"actorLastName\": \"Goh\",\r\n                \"gender\": \"male\",\r\n                \"age\": 24\r\n            },\r\n            {\r\n                \"actorFirstName\": \"Sam\",\r\n                \"actorLastName\": \"Tay\",\r\n                \"gender\": \"male\",\r\n                \"age\": 24\r\n            }\r\n            \r\n        ]\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movie/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Movie WITHOUT reviews and actors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n    {\r\n        \"movieName\": \"Some movie with reviews\",\r\n        \"yearOfRelease\": 2022,\r\n        \"imgUrl\": \"some url\",\r\n        \"rentalCost\": 23423\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movie/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movie/get/movies",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"get",
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movie/get/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": 1,\r\n    \"movieName\": \"The Shawshank Redemption\",\r\n    \"yearOfRelease\": 2022,\r\n    \"imgUrl\": \"https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg\",\r\n    \"rentalCost\": 230,\r\n    \"reviews\": [\r\n        {\r\n            \"reviewId\": 2,\r\n            \"dateOfReview\": \"2020\",\r\n            \"reviewAuthor\": \"Author 33 edit\",\r\n            \"rating\": 3.8,\r\n            \"reviewContent\": \"It's not his fault. I know you're going to want to, but you can't blame him. He really has no idea how it happened. I kept trying to come up with excuses I could say to mom that would keep her calm when she found out what happened, but the more I tried, the more I could see none of them would work. He was going to get her wrath and there was nothing I could say to prevent it.\"\r\n        },\r\n        {\r\n            \"reviewId\": 1,\r\n            \"dateOfReview\": \"2014\",\r\n            \"reviewAuthor\": \"Author 9\",\r\n            \"rating\": 1.2,\r\n            \"reviewContent\": \"Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.\"\r\n        }\r\n    ],\r\n    \"actors\": [\r\n        {\r\n            \"actorId\": 3,\r\n            \"actorFirstName\": \"Heath\",\r\n            \"actorLastName\": \"Ledger\",\r\n            \"gender\": \"male\",\r\n            \"age\": 80\r\n        },\r\n        {\r\n            \"actorId\": 2,\r\n            \"actorFirstName\": \"Tim\",\r\n            \"actorLastName\": \"Robbins\",\r\n            \"gender\": \"male\",\r\n            \"age\": 63\r\n        },\r\n        {\r\n            \"actorId\": 1,\r\n            \"actorFirstName\": \"Samuel\",\r\n            \"actorLastName\": \"L. Jackson\",\r\n            \"gender\": \"male\",\r\n            \"age\": 85\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movie/edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movie/delete/200",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"delete",
+								"200"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Actor Requests",
+			"item": [
+				{
+					"name": "ADD NEW Actor to EXISTING Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"actorId\": null,\r\n    \"actorFirstName\": \"actor added\",\r\n    \"actorLastName\": \"Lee\",\r\n    \"gender\": \"male\",\r\n    \"age\": 24\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actor/addNewActor/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"addNewActor",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD EXISTING Actor to EXISTING Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actor/addExistingActor?actorId=1&movieId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"addExistingActor"
+							],
+							"query": [
+								{
+									"key": "actorId",
+									"value": "1"
+								},
+								{
+									"key": "movieId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT Actor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"actorId\": 846,\r\n    \"actorFirstName\": \"edited first name again\",\r\n    \"actorLastName\": \"adited last name\",\r\n    \"gender\": \"female\",\r\n    \"age\": 23\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/actor/edit/846",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"edit",
+								"846"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Actors FROM Movie",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actor/get/movie?movieId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"get",
+								"movie"
+							],
+							"query": [
+								{
+									"key": "movieId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actor/get/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Actor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actor/get/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/actor/delete/695",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"actor",
+								"delete",
+								"695"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review Requests",
+			"item": [
+				{
+					"name": "Get all reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/review/get/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get review based on movieId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/review/get/movie/702",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"get",
+								"movie",
+								"702"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add REVIEW to existing movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reviewId\": 0,\r\n    \"dateOfReview\": 2030,\r\n    \"reviewAuthor\": \"added review\",\r\n    \"rating\": 2.5,\r\n    \"reviewContent\": \"some content that i just added\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/movie/4/addReview",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"4",
+								"addReview"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit review",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"reviewId\": 655,\r\n        \"dateOfReview\": \"2023\",\r\n        \"reviewAuthor\": \"some edited review author\",\r\n        \"rating\": 2.5,\r\n        \"reviewContent\": \"some new content that's edited\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/review/edit/655",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"edit",
+								"655"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Requests",
+			"item": [
+				{
+					"name": "GET User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/get/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/get/all",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"get",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": null,\r\n    \"username\": \"user\",\r\n    \"password\": \"user\",\r\n    \"permissions\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTER User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": null,\r\n    \"username\": \"user\",\r\n    \"password\": \"user\",\r\n    \"permissions\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Admin User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": null,\r\n    \"username\": \"user12\",\r\n    \"password\": \"user\",\r\n    \"permissions\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "EDIT User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"userId\": 1,\r\n        \"username\": \"user\",\r\n        \"password\": \"user\",\r\n        \"permissions\": \"admin\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Misc",
+			"item": [
+				{
+					"name": "POPULATE DATABASE",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movie/addFakes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"addFakes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
