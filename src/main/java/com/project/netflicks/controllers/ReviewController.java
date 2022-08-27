@@ -24,20 +24,42 @@ public class ReviewController {
     private MovieRepository movieRepository;
 
     @GetMapping(path="/get/all")
-    public List<Review> getAllReviews() {
-        return reviewRepository.findAllReviews();
+    public ResponseEntity<List<Review>> getAllReviews() {
+        try {
+            List<Review> reviews = reviewRepository.findAllReviews();
+            return new ResponseEntity<>(reviews, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @GetMapping(path="/get/movie/{movieId}")
-    public List<Review> getReviewsByMovie(@PathVariable(value="movieId") int movieId) {
-        return reviewRepository.findReviewByMovieId(movieId);
+    public ResponseEntity<List<Review>> getReviewsByMovie(@PathVariable(value="movieId") int movieId) {
+        try {
+            List<Review> reviews = reviewRepository.findReviewByMovieId(movieId);
+            return new ResponseEntity<>(reviews, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @PutMapping(path="/edit/{reviewId}")
-    public Review editReview(@PathVariable(value="reviewId") int reviewId, @RequestBody Review editedReview) {
-        Review reviewToEdit = reviewRepository.findById(reviewId).get();
-        reviewRepository.save(editedReview);
-        return editedReview;
+    public ResponseEntity<Review> editReview(@PathVariable(value="reviewId") int reviewId, @RequestBody Review editedReview) {
+        try {
+            Review reviewToEdit = reviewRepository.findById(reviewId).get();
+            reviewRepository.save(editedReview);
+            return new ResponseEntity<>(editedReview, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping(path="/add")
@@ -45,17 +67,27 @@ public class ReviewController {
         return reviewRepository.save(reviewToAdd);
     }
 
+    //Get movie Id of certain review
     @GetMapping(path="get/movieId/{reviewId}")
     public int findMovieIdbyReviewId(@PathVariable(value="reviewId") int reviewId) {
-        return reviewRepository.findMovieIdbyReviewId(reviewId);
+        //check if reviewId exists
+        try {
+            return reviewRepository.findMovieIdbyReviewId(reviewId);
+        }
+        catch (Exception e) {
+            return 0;
+        }
+
     }
 
     //add review to existing movie
-    @PutMapping(path="/{movieId}/addReview")
+    @PutMapping(path="/addReview/{movieId}")
     public ResponseEntity<Review> addReview(@PathVariable(value="movieId") int movieId, @RequestBody Review reviewToAdd) {
         try {
+            //get movie to add review into
             Movie movieToEdit = movieRepository.findById(movieId).get();
             Set<Review> currentReviews = movieToEdit.getReviews();
+            //add review to existing reviews
             currentReviews.add(reviewToAdd);
             movieToEdit.setReviews(currentReviews);
             movieRepository.save(movieToEdit);
@@ -63,7 +95,19 @@ public class ReviewController {
         }
         catch (Exception e) {
             System.out.println(e);
-            return new ResponseEntity<>(reviewToAdd, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping(path="delete/{reviewId}")
+    public ResponseEntity<Review> deleteReview(@PathVariable(value="reviewId") int reviewId) {
+        try {
+            Review reviewToDelete = reviewRepository.findById(reviewId).get();
+            reviewRepository.deleteById(reviewId);
+            return new ResponseEntity<>(reviewToDelete, HttpStatus.OK);
+        }
+        catch(Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
