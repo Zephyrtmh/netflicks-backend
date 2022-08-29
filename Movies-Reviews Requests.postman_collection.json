@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "52b89d24-dd98-4c2a-b397-6a539635fa7b",
+		"_postman_id": "b2d3799e-8698-4a3f-8c86-9395afff065a",
 		"name": "Movies-Reviews Requests",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13924534"
 	},
 	"item": [
 		{
@@ -102,6 +103,28 @@
 							"path": [
 								"movie",
 								"get",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Movie BY ReviewId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/movie/get/reviewId/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movie",
+								"get",
+								"reviewId",
 								"1"
 							]
 						}
@@ -324,7 +347,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Actor",
+					"name": "DELETE Actor",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -350,7 +373,7 @@
 			"name": "Review Requests",
 			"item": [
 				{
-					"name": "Get all reviews",
+					"name": "GET ALL Reviews",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -371,12 +394,33 @@
 					"response": []
 				},
 				{
-					"name": "Get review based on movieId",
+					"name": "GET Review",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/review/get/movie/702",
+							"raw": "http://localhost:8080/review/get/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"get",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Reviews BY movieId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/review/get/movie/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -386,44 +430,14 @@
 								"review",
 								"get",
 								"movie",
-								"702"
+								"1"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Add REVIEW to existing movie",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"reviewId\": 0,\r\n    \"dateOfReview\": 2030,\r\n    \"reviewAuthor\": \"added review\",\r\n    \"rating\": 2.5,\r\n    \"reviewContent\": \"some content that i just added\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/movie/4/addReview",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"movie",
-								"4",
-								"addReview"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit review",
+					"name": "EDIT Review",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -437,7 +451,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/review/edit/655",
+							"raw": "http://localhost:8080/review/edit/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -446,7 +460,58 @@
 							"path": [
 								"review",
 								"edit",
-								"655"
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Review to EXISTING Movie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reviewId\": 0,\r\n    \"dateOfReview\": 2030,\r\n    \"reviewAuthor\": \"added review\",\r\n    \"rating\": 2.5,\r\n    \"reviewContent\": \"some content that i just added\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/review/addReview/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"addReview",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/review/delete/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"review",
+								"delete",
+								"1"
 							]
 						}
 					},
@@ -569,35 +634,6 @@
 					"response": []
 				},
 				{
-					"name": "ADD Admin User",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"userId\": null,\r\n    \"username\": \"user12\",\r\n    \"password\": \"user\",\r\n    \"permissions\": \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/user/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"user",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "DELETE User",
 					"request": {
 						"method": "DELETE",
@@ -668,6 +704,35 @@
 							"path": [
 								"movie",
 								"addFakes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD Admin User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": null,\r\n    \"username\": \"user\",\r\n    \"password\": \"user\",\r\n    \"permissions\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"register"
 							]
 						}
 					},
