@@ -41,6 +41,8 @@ public class MovieController {
         }
     }
 
+
+
     @PutMapping(path="edit/{id}")
     public ResponseEntity<Movie> editMovie(@PathVariable(value="id") Integer id, @RequestBody Movie newMovie) {
         try {
@@ -72,6 +74,33 @@ public class MovieController {
         }
         catch (Exception e) {
             System.out.println("movie does not exist");
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    //Get movie Id of certain review
+    @GetMapping(path="get/reviewId/{reviewId}")
+    public ResponseEntity<Movie> findMovieIdbyReviewId(@PathVariable(value="reviewId") int reviewId) {
+        //check if reviewId exists
+        try {
+            int movieId = movieRepository.findMovieByReviewId(reviewId);
+            Movie movie = movieRepository.findById(movieId).get();
+            return new ResponseEntity<>(movie, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(path="get/actorId/{actorId}")
+    public ResponseEntity<List<Movie>> findMovieIdbyActorId(@PathVariable(value="actorId") int actorId) {
+        //check if reviewId exists
+        try {
+            List<Movie> movies = movieRepository.findMoviesByActorId(actorId);
+            return new ResponseEntity<>(movies, HttpStatus.OK);
+        }
+        catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }

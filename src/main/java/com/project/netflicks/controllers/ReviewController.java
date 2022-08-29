@@ -36,6 +36,18 @@ public class ReviewController {
 
     }
 
+    @GetMapping(path="/get/{reviewId}")
+    public ResponseEntity<Review> getReview(@PathVariable(value="reviewId") int reviewId) {
+        try {
+            Review review = reviewRepository.findById(reviewId).get();
+            return new ResponseEntity<>(review, HttpStatus.OK);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping(path="/get/movie/{movieId}")
     public ResponseEntity<List<Review>> getReviewsByMovie(@PathVariable(value="movieId") int movieId) {
         try {
@@ -46,7 +58,6 @@ public class ReviewController {
             System.out.println(e);
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-
     }
 
     @PutMapping(path="/edit/{reviewId}")
@@ -67,18 +78,6 @@ public class ReviewController {
         return reviewRepository.save(reviewToAdd);
     }
 
-    //Get movie Id of certain review
-    @GetMapping(path="get/movieId/{reviewId}")
-    public int findMovieIdbyReviewId(@PathVariable(value="reviewId") int reviewId) {
-        //check if reviewId exists
-        try {
-            return reviewRepository.findMovieIdbyReviewId(reviewId);
-        }
-        catch (Exception e) {
-            return 0;
-        }
-
-    }
 
     //add review to existing movie
     @PutMapping(path="/addReview/{movieId}")

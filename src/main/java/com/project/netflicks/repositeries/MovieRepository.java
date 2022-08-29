@@ -19,4 +19,10 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Modifying
     @Query(value="DELETE FROM movie_actor ma WHERE ma.movie_id=:movieId", nativeQuery = true)
     public void deleteMovie(@Param(value="movieId") String movieId);
+
+    @Query(value="SELECT mr_fk FROM reviews r WHERE r.review_id = ?1", nativeQuery = true)
+    public int findMovieByReviewId (int reviewId);
+
+    @Query(value="SELECT * FROM movies m WHERE m.movie_id IN (SELECT movie_id FROM movie_actor ma WHERE ma.actor_id=?1)", nativeQuery = true)
+    public List<Movie> findMoviesByActorId(int actorId);
 }
